@@ -1,0 +1,9 @@
+:~  title+'wrdu'
+    info+'word game by ~dalten for our mothers'
+    color+0x6a.aa64
+    site+/apps/wrdu
+    base+'wrdu'
+    version+[0 0 1]
+    website+'https://dalten.org/'
+    license+'Get Rekt'
+==
