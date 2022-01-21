@@ -1,0 +1,11 @@
+{
+  "name": "wrdu",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:vcavallo/wrdu.git",
+  "author": "vinney cavallo <hi@vinneycavallo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.25.0"
+  }
+}
