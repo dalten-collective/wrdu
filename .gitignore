@@ -1,2 +1,3 @@
 interface/build
 interface/node_modules
+interface/.env
