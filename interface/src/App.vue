@@ -1,6 +1,8 @@
 <template>
   <div>
     wrdu
+    <button class="p-2 border rounded-md" @click="closeAirlock">close airlock</button>
+    <button class="p-2 border rounded-md" @click="startGame">Start game</button>
   </div>
 </template>
 
@@ -22,23 +24,16 @@ export default {
 
   methods: {
     startAirlock() {
-      this.urbitAPI.ship = this.shipName
-      this.urbitAPI.subscribe({
-        app: 'wrdu',
-        path: '/website',
-        event: data => {
-          console.log('subscription data: ', data)
-          this.$store.dispatch('setMeme', data.meme)
-        }
-      }).then((sub) => {
-        this.loading = false
-        this.$store.dispatch('setSubscription', sub)
-      })
+      this.$store.dispatch('startAirlock')
     },
 
     closeAirlock() {
-      this.$store.dispatch('unSub')
+      this.$store.dispatch('closeAirlock')
     },
+
+    startGame() {
+      this.$store.dispatch('startGame')
+    }
   }
 }
 
