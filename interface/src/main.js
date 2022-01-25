@@ -2,33 +2,20 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import './assets/tailwind.css'
 
-// import vClickOutside from 'click-outside-vue3'
+import { createStore } from './store'
 
-import { createStore } from 'vuex'
+// import vClickOutside from 'click-outside-vue3'
 
 // import UrbitInterface from '@urbit/http-api'; // for typescript
 import connector from '@urbit/http-api';
 
 const urbitAPI = new connector('', '')
 
-const store = createStore({
-  state () {
-  },
-  mutations: {
-  },
-
-  getters: {
-  },
-
-  actions: {
-  },
-
-})
-
 const app = createApp(App)
+const store = createStore(app)
 
 app.config.globalProperties.$filters = {
-  date(date: Date) {
+  date(date) {
     return date.toLocaleString('default', {
       year: 'numeric',
       month: 'numeric',
@@ -38,6 +25,7 @@ app.config.globalProperties.$filters = {
 }
 
 // app.use(vClickOutside)
+
 app.use(store)
 app.config.globalProperties.urbitAPI = urbitAPI
 app.config.globalProperties.shipName = window.ship
