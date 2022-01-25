@@ -14,4 +14,7 @@ The Vue.js front end files are found in the `interface` directory
 
 ## Setup, Build and Deploy
 
-- Setup instructions: `bin/setup.sh`
+- Urbit Setup instructions hints: `bin/setup.sh`
+- TODO: automated setup with terran-control json API
+- Install js dependencies: `bin/install-js-dependencies.sh`
+- Serve the interface in dev mode locally: `bin/serve-interface.sh`
