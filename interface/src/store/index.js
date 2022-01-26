@@ -64,7 +64,7 @@ export const createStore = (app) => {
           mark: 'wrdu-game',
           json: {
             'start': {
-              'leng': '%four',
+              'leng': 'four',
             }
           }
         });
