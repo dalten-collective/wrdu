@@ -18,7 +18,7 @@
     =<  (wrd-noun jon)
     |%
     ++  wrd-noun
-      ?:  |(=(-.jon %shrug) =(-.jon %board)
+      ?:  |(=(-.jon %shrug) =(-.jon %board))
         [-.jon ~]
       =,  dejs:format
       %-  of
