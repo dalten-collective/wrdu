@@ -24,15 +24,15 @@ export default {
 
   methods: {
     startAirlock() {
-      this.$store.dispatch('startAirlock')
+      this.$store.dispatch('ship/startAirlock')
     },
 
     closeAirlock() {
-      this.$store.dispatch('closeAirlock')
+      this.$store.dispatch('ship/closeAirlock')
     },
 
     startGame() {
-      this.$store.dispatch('startGame')
+      this.$store.dispatch('game/startGame')
     }
   }
 }
