@@ -14,16 +14,15 @@
   ::
   ++  json
     |=  jon=^json
-    %-  wrdu-game
+    %-  play
     =<  (wrd-noun jon)
     |%
     ++  wrd-noun
-      ?:  |(=(-.jon %shrug) =(-.jon %board)
-        [-.jon ~]
       =,  dejs:format
       %-  of
       :~  [%guess (ot :~(['test' so]))]
-          [%start (ot :~(['leng' (se %tas)]))]
+          [%start (ot :~(['leng' so]))]
       ==
+    --
   --
 --
