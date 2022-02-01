@@ -135,6 +135,10 @@ export default {
       gameApi.startGame()
     },
 
+    shrug() {
+      gameApi.shrug()
+    },
+
     sendGuess({commit}, gues) {
       playApi.guess(gues)
     },

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="mesg" class="absolute top-0 mt-6 h-1/2">
+  <div v-if="mesg" class="fixed w-full px-4 top-4">
     <div class="flex justify-between py-2 text-center shadow-lg alert rounded-md">
       <div class="pl-2">
         {{ mesg }}
