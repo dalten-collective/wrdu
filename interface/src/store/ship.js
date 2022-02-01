@@ -34,7 +34,7 @@ export default {
           if (data.mesg) {
             dispatch('game/setMesg', data.mesg, { root: true })
           } else {
-            dispatch('game/setMesg', '', { root: true })
+            // dispatch('game/setMesg', '', { root: true })
           }
         },
         (sub) => {

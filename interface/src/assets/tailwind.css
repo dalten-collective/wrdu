@@ -103,6 +103,11 @@ body {
   color: var(--yellow);
 }
 
+.alert {
+  color: #212121;
+  background-color: #85c0f9;
+}
+
 .bg-dark {
   background-color: var(--color-tone-7);
 }

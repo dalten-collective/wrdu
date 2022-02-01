@@ -2,7 +2,7 @@
   <div class="px-2 py-1">
     <div class="flex items-center justify-between text-center">
       <div class="flex-1 text-left">
-        <button class="mr-2 color">
+        <button @click="showHelp = true" class="mr-2 color">
           <span class="text-2xl">🜷</span>  <!-- help -->
         </button>
         <button @click="showHint = true" class="color">
@@ -26,6 +26,7 @@
           <!-- crown: &#128818; -->
       </div>
     </div>
+
     <div v-if="showHint" class="absolute w-1/2 h-1/2 top-1/4 left-1/4">
       <div class="flex flex-col p-2 rounded-sm shadow-lg bg-light color">
         <div class="text-right">
@@ -42,6 +43,20 @@
         </div>
       </div>
     </div>
+
+    <div v-if="showHelp" class="absolute w-1/2 h-1/2 top-1/4 left-1/4">
+      <div class="flex flex-col p-2 rounded-sm shadow-lg bg-light color">
+        <div class="text-right">
+          <button @click="showHelp = false">
+            &#128881;
+          </button>
+        </div>
+        <div>
+          <p class="color-dark">Here is some help</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -62,6 +77,7 @@ export default {
     return {
       showHint: false,
       reallyShowHint: false,
+      showHelp: false,
     }
   },
 

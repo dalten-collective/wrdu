@@ -84,6 +84,10 @@ export default {
   },
 
   actions: {
+    clearMesg({ commit }) {
+      commit('setMesg', '')
+    },
+
     setMesg({ commit }, payload) {
       commit('setMesg', payload)
     },
