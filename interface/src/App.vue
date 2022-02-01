@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="max-w-md m-auto">
     <div class="text-red-600">
       DEBUG
       <button class="p-2 border rounded-md" @click="closeAirlock">close airlock</button>

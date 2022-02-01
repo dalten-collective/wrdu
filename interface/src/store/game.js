@@ -52,6 +52,21 @@ export default {
     mesg(state) {
       return state.mesg
     },
+    granRite(_, getters) {
+      const lettRiteMapping = {}
+      // For all instances of rite (oldest to newest), set each letter's rating
+      for (const [_, v] of
+        (Object.entries(getters.how).slice().sort((a, b) => a.secs - b.secs))
+      ){
+        const rites = v.rite.split('')
+        const letts = v.test.split('')
+        letts.forEach((l, i) => {
+          // TODO: check if already seen
+          lettRiteMapping[l] = rites[i]
+        })
+      }
+      return lettRiteMapping
+    },
   },
 
   actions: {

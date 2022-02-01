@@ -24,7 +24,7 @@ export default {
       const rating = this.rite.split('')[index]
       switch (rating) {
         case 'o':  // miss
-          return ['miss']
+          return ['rong']
         case 'n':  // close
           return 'clos'
         case 'x':  // exact
@@ -36,13 +36,15 @@ export default {
 </script>
 
 <style scoped>
-  .miss {
-    background-color: grey;
-  }
-  .clos {
-    background-color: yellow
-  }
-  .rite {
-    background: green;
-  }
+  /* 
+  * .rong {
+  *   background-color: grey;
+  * }
+  * .clos {
+  *   background-color: yellow
+  * }
+  * .rite {
+  *   background: green;
+  * }
+  */
 </style>
