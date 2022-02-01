@@ -23,12 +23,14 @@ export default {
       airlock.openAirlock(
         (data) => {
           console.log('data ', data)
-          if (data.meme) {
-            dispatch('game/setMeme', data.meme, { root: true })
-          }
-          if (data.open) {
-            dispatch('game/setOpen', data.open, { root: true })
-          }
+          dispatch('game/setMeme', data.meme, { root: true })
+          dispatch('game/setOpen', data.open, { root: true })
+          //if (data.meme) {
+            //dispatch('game/setMeme', data.meme, { root: true })
+          //}
+          //if (data.open) {
+            //dispatch('game/setOpen', data.open, { root: true })
+          //}
           if (data.mesg) {
             dispatch('game/setMesg', data.mesg, { root: true })
           } else {

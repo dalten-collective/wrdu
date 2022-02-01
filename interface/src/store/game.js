@@ -46,7 +46,7 @@ export default {
       return state.alow
     },
     done(_, getters) {
-      if (getters.word == '') {
+      if (!getters.word) {
         return true
       }
       return false
@@ -94,6 +94,12 @@ export default {
       commit('setMeme', payload)
     },
     setOpen({ commit }, payload) {
+      if (payload === null) {
+        commit('setWat', {})
+        commit('setHow', {})
+        commit('setWen', 0)
+        return
+      }
       commit('setWat', payload.wat)
       commit('setHow', payload.how)
       commit('setWen', payload.wen)

@@ -1,9 +1,12 @@
 <template>
-  <div class="px-2 pb-2">
+  <div class="px-2 py-1">
     <div class="flex items-center justify-between text-center">
       <div class="flex-1 text-left">
-        <button class="color">
-          <span class="text-2xl">&#x2706;</span>
+        <button class="mr-2 color">
+          <span class="text-2xl">🜷</span>  <!-- help -->
+        </button>
+        <button @click="showHint = true" class="color">
+          <span class="text-2xl">&#128768;</span> <!-- hint -->
         </button>
       </div>
       <div class="flex-1 text-center">
@@ -16,8 +19,27 @@
           <!-- scores -->
         </div>
         <button @click="startGame" class="flex color">
-          <span class="text-2xl" :class="done ? '' : ['opacity-30', 'cursor-default']">&#x21ba;</span>
+          <span class="text-2xl" :class="done ? '' : ['opacity-30', 'cursor-default']">
+          &#128880;
+          </span>
         </button>
+          <!-- crown: &#128818; -->
+      </div>
+    </div>
+    <div v-if="showHint" class="absolute w-1/2 h-1/2 top-1/4 left-1/4">
+      <div class="flex flex-col p-2 rounded-sm shadow-lg bg-light color">
+        <div class="text-right">
+          <button @click="showHint = false">
+            &#128881;
+          </button>
+        </div>
+        <div v-if="!reallyShowHint">
+          <p class="color-dark">Are you sure you want a hint?</p>
+          <p class="font-bold text-center"><span class="mr-2 cursor-pointer green-text" @click="reallyShowHint = true">Yes</span> <span class="cursor-pointer" @click="showHint = false">No</span></p>
+        </div>
+        <div v-else>
+          <p class="color-dark">{{ mean }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -32,9 +54,17 @@ export default {
   ],
   computed: {
     ...mapGetters('game', [
-      'how', 'spaces', 'done'
+      'how', 'spaces', 'done', 'mean'
     ]),
   },
+
+  data() {
+    return {
+      showHint: false,
+      reallyShowHint: false,
+    }
+  },
+
   methods: {
     startGame() {
       if (!this.done) {
