@@ -34,6 +34,7 @@ html, body {
 }
 
 body {
+  touch-action: pan-x pan-y;
   margin: 0;
   background-color: var(--color-tone-7);
   color: rgb(215, 218, 220);
