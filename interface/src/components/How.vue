@@ -1,5 +1,5 @@
 <template>
-  <div v-for="(a, i) in alow" :key="i">
+  <div v-for="(a, i) in alow - 1" :key="i">
 
     <Rite v-if="riteAtIndex(a)" :rite="riteAtIndex(a).rite" :test="riteAtIndex(a).test" />
 

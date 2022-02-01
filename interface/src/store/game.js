@@ -16,6 +16,7 @@ export default {
       },
       wen: 0,
       mesg: '',
+      win: null,
     }
   },
 
@@ -35,11 +36,20 @@ export default {
     setWen(state, payload) {
       state.wen = payload
     },
+    setWin(state, payload) {
+      state.win = payload
+    },
   },
 
   getters: {
     alow(state) {
       return state.alow
+    },
+    done(_, getters) {
+      if (getters.word == '') {
+        return true
+      }
+      return false
     },
     spaces(state) {
       return state.wat.long
@@ -77,6 +87,9 @@ export default {
     setMesg({ commit }, payload) {
       commit('setMesg', payload)
     },
+    setWin({ commit }, payload) {
+      commit('setWin', payload)
+    },
     setMeme({ commit }, payload) {
       commit('setMeme', payload)
     },
@@ -84,6 +97,7 @@ export default {
       commit('setWat', payload.wat)
       commit('setHow', payload.how)
       commit('setWen', payload.wen)
+      commit('setWin', payload.win) // TODO: yea?
     },
 
     startGame() {

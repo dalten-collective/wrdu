@@ -1,11 +1,11 @@
 <template>
-  <div class="max-w-md px-2 m-auto">
+  <div class="max-w-full">
     <div v-if="false" class="text-red-600">
       DEBUG
       <button class="p-2 border rounded-md" @click="closeAirlock">close airlock</button>
       <button class="p-2 border rounded-md" @click="startGame">Start game</button>
     </div>
-    <Hed />
+    <Hed class="border-b hed-border" />
     <Mesg /> <!-- needs to float -->
     <Board />
     <Guesser />
@@ -15,7 +15,7 @@
 <script>
 
 import Board from './components/Board.vue'
-import Hed from './components/Head.vue'
+import Hed from './components/Hed.vue'
 import Guesser from './components/Guesser.vue'
 import Mesg from './components/Mesg.vue'
 

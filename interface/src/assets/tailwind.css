@@ -35,13 +35,15 @@ html, body {
 
 body {
   margin: 0;
+  background-color: var(--color-tone-7);
+  color: rgb(215, 218, 220);
 }
 
 #app {
   /* height: 100%; */
+  max-width: 500px;
+  margin: 0 auto;
   padding-bottom: 1rem;
-  background-color: var(--color-tone-7);
-  color: rgb(215, 218, 220);
 }
 
 .rong  {
@@ -80,6 +82,14 @@ body {
 
 .rite-tile {
   border-width: 2px;
+}
+
+.hed-border {
+  border-color: var(--color-tone-3);
+}
+
+.color {
+  color: var(--color-tone-2);
 }
 
 /* border: 1px solid  #3a3a3c */
