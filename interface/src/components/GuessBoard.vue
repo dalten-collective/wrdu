@@ -94,7 +94,6 @@ export default {
 
     appendLetter(letter) {
       if (this.currentGues.length === this.spaces) {
-        console.log('too long')
         return
       }
       this.currentGues.push(letter)

@@ -1,5 +1,14 @@
 <template>
   <div :style="`grid-template-columns: repeat(${ spaces }, 1fr);`" style="display: grid; grid-gap: 5px;">
+    <template v-if="!test">
+      <div v-for="i in spaces" :key="i"
+        class="inline-flex items-center justify-center font-bold capitalize align-middle rite-tile empt"
+        style="font-size: 2rem;"
+      >
+        &nbsp;
+      </div>
+    </template>
+
     <div v-for="(c, i) in test.split('')" :key="i" :class="letterStyle(i)"
       class="inline-flex items-center justify-center font-bold capitalize align-middle rite-tile"
       style="font-size: 2rem;"

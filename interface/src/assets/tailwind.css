@@ -19,13 +19,13 @@
   --black: #212121;
   --orange: #f5793a;
   --blue: #85c0f9;
- --color-tone-1: #d7dadc;
- --color-tone-2: #818384;
- --color-tone-3: #565758;
- --color-tone-4: #3a3a3c;
- --color-tone-5: #272729;
- --color-tone-6: #1a1a1b;
- --color-tone-7: #121213;
+  --color-tone-1: #d7dadc;
+  --color-tone-2: #818384;
+  --color-tone-3: #565758;
+  --color-tone-4: #3a3a3c;
+  --color-tone-5: #272729;
+  --color-tone-6: #1a1a1b;
+  --color-tone-7: #121213;
 }
 
 html, body {
@@ -38,25 +38,40 @@ body {
 }
 
 #app {
-  height: 100%;
-  background-color: #121213;
+  /* height: 100%; */
+  padding-bottom: 1rem;
+  background-color: var(--color-tone-7);
   color: rgb(215, 218, 220);
 }
 
 .rong  {
   background-color: var(--absent);
+  border-color: var(--absent);
 }
 .clos {
   background-color: var(--yellow);
+  border-color: var(--yellow);
 }
 .rite {
   background: var(--green);
+  border-color: var(--green);
 }
 .norm {
   background: var(--midGray);
+  border-color: var(--color-tone-3);
 }
 .keyText {
   color: var(--keyColor);
+}
+
+.empt {
+  background: var(--color-tone-7);
+  border-color: var(--color-tone-3);
+}
+
+.tryy {
+  background: var(--color-tone-7);
+  border-color: var(--color-tone-2);
 }
 
 .del-key > path {
@@ -64,7 +79,7 @@ body {
 }
 
 .rite-tile {
-  border-color: var(--color-tone-3);
+  border-width: 2px;
 }
 
 /* border: 1px solid  #3a3a3c */

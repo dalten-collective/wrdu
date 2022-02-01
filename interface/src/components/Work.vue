@@ -2,10 +2,15 @@
   <div :style="`grid-template-columns: repeat(${ spaces }, 1fr);`" style="display: grid; grid-gap: 5px;">
 
       <div v-for="(x, i) in spaces" :key="x"
-      class="inline-flex items-center justify-center font-bold capitalize align-middle border border-4 rite-tile"
+      class="inline-flex items-center justify-center font-bold capitalize align-middle rite-tile tryy"
         style="font-size: 2rem;"
       >
-        {{ letterAtGuessIndex(i) }}
+        <span v-if="letterAtGuessIndex(i)">
+          {{ letterAtGuessIndex(i) }}
+        </span>
+        <span v-else>
+          &nbsp;
+        </span>
       </div>
   </div>
 </template>
@@ -30,7 +35,7 @@ export default {
       if (this.guess.length > 0) {
         return this.guess[i]
       } else {
-        return ''
+        return null
       }
     }
   },

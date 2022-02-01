@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div style="display: grid; grid-template-rows: repeat(10, 1fr); grid-gap: 5px; padding: 10px;">
-      <Work :guess="guess" />
-      <How />
+    <div class="m-auto" style="max-width: 17rem;" >
+      <div style="display: grid; grid-gap: 5px; padding: 10px;" :style="`grid-template-rows: repear(${ alow }, 1fr);`">
+        <How />
+        <Work :guess="guess" />
+      </div>
     </div>
     <GuessBoard @updateSpaces="updateSpaces" @sendGues="sendGues" ref="bord" />
   </div>
@@ -25,7 +27,7 @@ export default {
 
   computed: {
     ...mapGetters('game', [
-      'spaces', 'word', 'mean'
+      'spaces', 'word', 'mean', 'alow'
     ]),
     spacesToGues() {
       return this.guess.join('')
@@ -34,11 +36,9 @@ export default {
 
   methods: {
     updateSpaces(spaces) {
-      console.log('got ', spaces)
       this.guess = spaces
     },
     sendGues() {
-      console.log('sending ', this.spacesToGues)
       this.$store.dispatch('game/sendGuess', this.spacesToGues).then(() => {
         this.clearWork()
       })

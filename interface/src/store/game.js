@@ -5,7 +5,7 @@ export default {
   namespaced: true,
   state () {
     return {
-      alow: 10,
+      alow: 6, // TODO: 10
       meme: {},
       wat: {
         word: '',
