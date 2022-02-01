@@ -95,19 +95,27 @@ export default {
       commit('setWin', payload)
     },
     setMeme({ commit }, payload) {
-      commit('setMeme', payload)
+      if (payload.meme) {
+        commit('setMeme', payload.meme)
+      }
     },
     setOpen({ commit }, payload) {
-      if (payload === null) {
-        commit('setWat', {})
-        commit('setHow', {})
-        commit('setWen', 0)
+      if (!payload.open) {
         return
       }
-      commit('setWat', payload.wat)
-      commit('setHow', payload.how)
-      commit('setWen', payload.wen)
-      commit('setWin', payload.win) // TODO: yea?
+      const open = payload.open
+      if (open.wat) {
+        commit('setWat', open.wat)
+      }
+      if (open.how) {
+        commit('setHow', open.how)
+      }
+      if (open.wen) {
+        commit('setWen', open.wen)
+      }
+      if (open.win) {
+        commit('setWin', open.win) // TODO: yea?
+      }
     },
 
     startGame() {

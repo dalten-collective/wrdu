@@ -23,8 +23,8 @@ export default {
       airlock.openAirlock(
         (data) => {
           console.log('data ', data)
-          dispatch('game/setMeme', data.meme, { root: true })
-          dispatch('game/setOpen', data.open, { root: true })
+          dispatch('game/setMeme', data, { root: true })
+          dispatch('game/setOpen', data, { root: true })
           //if (data.meme) {
             //dispatch('game/setMeme', data.meme, { root: true })
           //}
