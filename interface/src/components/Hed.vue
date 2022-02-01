@@ -5,7 +5,7 @@
         <button @click="showHelp = true" class="mr-2 color">
           <span class="text-2xl">🜷</span>  <!-- help -->
         </button>
-        <button @click="showHint = true" class="color">
+        <button @click="!mean ? '' : showHint = true" class="color" :class="mean ? '' : ['opacity-30', 'cursor-default']">
           <span class="text-2xl">&#128768;</span> <!-- hint -->
         </button>
       </div>
@@ -23,12 +23,12 @@
           &#128880;
           </span>
         </button>
-          <!-- crown: &#128818; -->
+        <!-- crown: &#128818; -->
       </div>
     </div>
 
     <div v-if="showHint" class="absolute w-1/2 h-1/2 top-1/4 left-1/4">
-      <div class="flex flex-col p-2 rounded-sm shadow-lg bg-light color">
+      <div class="flex flex-col p-2 pb-6 rounded-sm shadow-lg bg-light color">
         <div class="text-right">
           <button @click="showHint = false">
             &#128881;
@@ -45,14 +45,15 @@
     </div>
 
     <div v-if="showHelp" class="absolute w-1/2 h-1/2 top-1/4 left-1/4">
-      <div class="flex flex-col p-2 rounded-sm shadow-lg bg-light color">
+      <div class="flex flex-col p-2 pb-6 rounded-sm shadow-lg bg-light color">
         <div class="text-right">
           <button @click="showHelp = false">
             &#128881;
           </button>
         </div>
         <div>
-          <p class="color-dark">Here is some help</p>
+          <p class="color-dark">Help coming soon...</p>
+          <p class="mt-4 color-dark">Another fine <a class="underline green-text" href="https://dalten.org" target="_blank">dalten collective</a> product.</p>
         </div>
       </div>
     </div>
