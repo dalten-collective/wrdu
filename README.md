@@ -21,3 +21,8 @@ The Vue.js front end files are found in the `interface` directory
 - Serve the interface in dev mode locally: `bin/serve-interface.sh`
 - The vite server should provide a link to the local site. something like
 [http://localhost:3000/apps/wrdu/](http://localhost:3000/apps/wrdu/)
+
+## Common Problems
+
+- If you have issues with Vite making the initial connection, try using your
+local IP address rather than `localhost` in .env`.
