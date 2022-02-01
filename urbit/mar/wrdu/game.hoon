@@ -21,7 +21,7 @@
       =,  dejs:format
       %-  of
       :~  [%guess (ot :~(['test' so]))]
-          [%start (ot :~(['leng' so]))]
+          [%start (ot :~(['leng' (se %tas)]))]
       ==
     --
   --
