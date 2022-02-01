@@ -8,7 +8,6 @@
         <button @click="!mean ? '' : showHint = true" class="color" :class="mean ? '' : ['opacity-30', 'cursor-default']">
           <span class="text-2xl">&#128768;</span> <!-- hint -->
         </button>
-        <button @click="shrug">givup</button>
       </div>
       <div class="flex-1 text-center">
         <h1 class="text-3xl font-bold">
@@ -19,9 +18,15 @@
         <div class="flex">
           <!-- scores -->
         </div>
-        <button @click="startGame" class="flex color">
-          <span class="text-2xl" :class="done ? '' : ['opacity-30', 'cursor-default']">
+        <button v-if="done" @click="startGame" class="flex color">
+          <span class="text-2xl">
           &#128880;
+          </span>
+        </button>
+        <button v-else @click="showShrug = true" class="flex color">
+          <span class="text-2xl">
+          &#128819;
+          <!-- ¯\_(ツ)_/¯ -->
           </span>
         </button>
         <!-- crown: &#128818; -->
@@ -59,6 +64,20 @@
       </div>
     </div>
 
+    <div v-if="showShrug" class="absolute w-1/2 h-1/2 top-1/4 left-1/4">
+      <div class="flex flex-col p-2 pb-6 rounded-sm shadow-lg bg-light color">
+        <div class="text-right">
+          <button @click="showShrug = false">
+            &#128881;
+          </button>
+        </div>
+        <div>
+          <p class="color-dark">Are you sure you want to give up?</p>
+          <p class="font-bold text-center"><span class="mr-2 cursor-pointer green-text" @click="shrug">Yes</span> <span class="cursor-pointer" @click="showShrug = false">No</span></p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -80,6 +99,7 @@ export default {
       showHint: false,
       reallyShowHint: false,
       showHelp: false,
+      showShrug: false,
     }
   },
 
