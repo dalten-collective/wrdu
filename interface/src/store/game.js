@@ -5,6 +5,7 @@ export default {
   namespaced: true,
   state () {
     return {
+      alow: 10,
       meme: {},
       wat: {
         word: '',
@@ -37,6 +38,9 @@ export default {
   },
 
   getters: {
+    alow(state) {
+      return state.alow
+    },
     spaces(state) {
       return state.wat.long
     },

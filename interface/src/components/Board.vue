@@ -1,20 +1,20 @@
 <template>
-  <div>
-    <pre>
+  <div v-if="false">
+    <pre v-if="false">
       spaces: {{ spaces }}
       word: {{ word }}
       mean: {{ mean }}
-      <How />
-      <Mesg />
     </pre>
+      <How />
   </div>
 </template>
 
 <script>
 
+// TODO: unused?!
+
 import { mapGetters } from 'vuex'
 import How from './How.vue'
-import Mesg from './Mesg.vue'
 
 export default {
   computed: {
@@ -25,7 +25,6 @@ export default {
 
   components: {
     How,
-    Mesg
   },
 }
 </script>

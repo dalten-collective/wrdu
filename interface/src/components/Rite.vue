@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <div v-for="(c, i) in test.split('')" :key="i" :class="letterStyle(i)" class="inline-block">
+  <div :style="`grid-template-columns: repeat(${ spaces }, 1fr);`" style="display: grid; grid-gap: 5px;">
+    <div v-for="(c, i) in test.split('')" :key="i" :class="letterStyle(i)"
+      class="inline-flex items-center justify-center font-bold capitalize align-middle rite-tile"
+      style="font-size: 2rem;"
+    >
       {{ c }}
     </div>
   </div>
@@ -16,35 +19,29 @@ export default {
   ],
   computed: {
     ...mapGetters('game', [
-      'how'
+      'how', 'spaces',
     ]),
   },
   methods: {
     letterStyle(index) {
+      var style = ['border', 'border-4' ]
       const rating = this.rite.split('')[index]
       switch (rating) {
         case 'o':  // miss
-          return ['rong']
+          style.push('rong')
+          break
         case 'n':  // close
-          return 'clos'
+          style.push('clos')
+          break
         case 'x':  // exact
-          return 'rite'
+          style.push('rite')
+          break
+        default: 
+          style.push('norm')
+          break
       }
+      return style
     }
   },
 }
 </script>
-
-<style scoped>
-  /* 
-  * .rong {
-  *   background-color: grey;
-  * }
-  * .clos {
-  *   background-color: yellow
-  * }
-  * .rite {
-  *   background: green;
-  * }
-  */
-</style>

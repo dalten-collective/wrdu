@@ -1,18 +1,10 @@
 <template>
   <div>
-    <!-- adjust focus based on index and backspace -->
-    <!-- <input v-for="space in spaces" class="mr-2" :key="space" style="width: 32px; height: 32px;" type="text" maxlength="1" /> -->
-    <!--
-    <div v-for="letter in guess" :key="letter">
-      {{ letter }}
+    <div style="display: grid; grid-template-rows: repeat(10, 1fr); grid-gap: 5px; padding: 10px;">
+      <Work :guess="guess" />
+      <How />
     </div>
-    -->
-    <Work :spaces="guess" />
     <GuessBoard @updateSpaces="updateSpaces" @sendGues="sendGues" ref="bord" />
-    <input v-model="testGuess" />
-    <button @click="sendGues">
-      Guess
-    </button>
   </div>
 </template>
 
@@ -20,6 +12,7 @@
 
 import { mapGetters } from 'vuex'
 import GuessBoard from './GuessBoard.vue'
+import How from './How.vue'
 import Work from './Work.vue'
 
 export default {
@@ -58,6 +51,7 @@ export default {
 
   components: {
     GuessBoard,
+    How,
     Work
   },
 }

@@ -1,8 +1,18 @@
 <template>
-  <div>
-    <div v-for="h in how" :key="h.secs">
-      <Rite :rite="h.rite" :test="h.test" />
+  <div v-for="(a, i) in alow" :key="i">
+
+    <Rite v-if="!riteAtIndex(a)" :rite="riteAtIndex(a).rite" :test="riteAtIndex(a).test" />
+    <div v-else>
+      <div :style="`grid-template-columns: repeat(${ spaces }, 1fr);`" style="display: grid; grid-gap: 5px;">
+        <div v-for="i in spaces" :key="i"
+          class="inline-flex items-center justify-center font-bold capitalize align-middle border border-4 rite-tile"
+          style="font-size: 2rem;"
+        >
+          &nbsp;
+        </div>
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -14,11 +24,21 @@ import Rite from './Rite.vue'
 export default {
   computed: {
     ...mapGetters('game', [
-      'how'
+      'how', 'alow', 'spaces'
     ]),
+  },
+  methods: {
+    riteAtIndex(i) {
+      if (this.how.hasOwnProperty(i)) {
+        console.log('how: ', this.how[i])
+        return this.how[i]
+      }
+      console.log('non')
+      return false
+    }
   },
   components: {
     Rite
-  }
+  },
 }
 </script>

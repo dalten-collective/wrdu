@@ -5,7 +5,7 @@
       <button class="p-2 border rounded-md" @click="closeAirlock">close airlock</button>
       <button class="p-2 border rounded-md" @click="startGame">Start game</button>
     </div>
-
+    <Mesg />
     <Board />
     <Guesser />
   </div>
@@ -15,6 +15,7 @@
 
 import Board from './components/Board.vue'
 import Guesser from './components/Guesser.vue'
+import Mesg from './components/Mesg.vue'
 
 export default {
   data() {
@@ -47,7 +48,8 @@ export default {
 
   components: {
     Board,
-    Guesser
+    Guesser,
+    Mesg
   }
 }
 
