@@ -16,6 +16,7 @@ export default {
       },
       wen: 0,
       mesg: '',
+      mesgTimer: null,
       win: null,
     }
   },
@@ -101,9 +102,13 @@ export default {
       commit('setMesg', '')
     },
 
-    setMesg({ commit }, payload) {
+    setMesg({ commit, dispatch }, payload) {
       commit('setMesg', payload)
+      setTimeout(() => {
+        dispatch('clearMesg')
+      }, 3000)
     },
+
     setWin({ commit }, payload) {
       commit('setWin', payload)
     },
