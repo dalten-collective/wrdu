@@ -6,9 +6,17 @@ export default {
       app: 'wrdu',
       mark: 'wrdu-game',
       json: {
-        'start': {
-          'leng': 'four',
-        }
+        'start': null
+      }
+    });
+  },
+
+  shrug() {
+    urbitAPI.poke({
+      app: 'wrdu',
+      mark: 'wrdu-game',
+      json: {
+        'shrug': null 
       }
     });
   }
