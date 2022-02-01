@@ -1,12 +1,20 @@
 <template>
   <div>
-    wrdu
-    <button class="p-2 border rounded-md" @click="closeAirlock">close airlock</button>
-    <button class="p-2 border rounded-md" @click="startGame">Start game</button>
+    <div class="text-red-600">
+      DEBUG
+      <button class="p-2 border rounded-md" @click="closeAirlock">close airlock</button>
+      <button class="p-2 border rounded-md" @click="startGame">Start game</button>
+    </div>
+
+    <Board />
+    <Guesser />
   </div>
 </template>
 
 <script>
+
+import Board from './components/Board.vue'
+import Guesser from './components/Guesser.vue'
 
 export default {
   data() {
@@ -33,7 +41,13 @@ export default {
 
     startGame() {
       this.$store.dispatch('game/startGame')
+      // or: import gameApi and call startGame directly
     }
+  },
+
+  components: {
+    Board,
+    Guesser
   }
 }
 

@@ -1,13 +1,13 @@
 import urbitAPI from './urbitAPI'
 
 export default {
-  startGame() {
+  guess(gues) {
     urbitAPI.poke({
       app: 'wrdu',
       mark: 'wrdu-game',
       json: {
-        'start': {
-          'leng': 'four',
+        'guess': {
+          'test': gues
         }
       }
     });

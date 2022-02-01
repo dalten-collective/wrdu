@@ -6,6 +6,7 @@
 
 html, body {
   height: 100%;
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
@@ -14,4 +15,17 @@ body {
 
 #app {
   height: 100%;
+  background-color: #121213;
+  color: rgb(215, 218, 220);
 }
+
+/* border: 1px solid  #3a3a3c */
+/*
+ * --color-tone-1: #d7dadc;
+ * --color-tone-2: #818384;
+ * --color-tone-3: #565758;
+ * --color-tone-4: #3a3a3c;
+ * --color-tone-5: #272729;
+ * --color-tone-6: #1a1a1b;
+ * --color-tone-7: #121213;
+ */

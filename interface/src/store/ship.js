@@ -22,7 +22,9 @@ export default {
     startAirlock({ commit, dispatch }) {
       airlock.openAirlock(
         (data) => {
+          console.log('data ', data)
           dispatch('game/setMeme', data.meme, { root: true })
+          dispatch('game/setOpen', data.open, { root: true })
         },
         (sub) => {
           dispatch('setSubscription', sub)
