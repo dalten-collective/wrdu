@@ -226,8 +226,8 @@
     ?:  |(?=(~ wor) ?=(~ plo))
       =/  born=bord
         (~(put by how.ope) +(brd) [(sub now.bol wen.ope) [pla rit]])
-      ?:  =(+(brd) 10)
-        ~&  >>>  [%pound %sand - rit %on %turn %10]
+      ?:  =(+(brd) 6)
+        ~&  >>>  [%pound %sand - rit %on %turn %6]
         =.  open  ~
         =.  meme  (~(put by meme) tod.dat `[wat.ope born %.n])
         [(earth `[%gu %lo]) state]
