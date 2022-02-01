@@ -12,10 +12,10 @@
 ::
 +$  state-zero
   $:  %0
-      =meme
-      =best
-      =rank
-      =fren
+      ::=meme
+      ::=best
+      ::=rank
+      ::=fren
       =open
   ==
 ::
@@ -109,7 +109,7 @@
       ::
           %start
         ?~  open
-          (setup:game:wr leng.vaz)
+          setup:game:wr
         ~&  >>>  [%game %in %play - [%shrug ~] %to %quit ~]
         `state
       ==
@@ -128,21 +128,17 @@
         %arvo  %b
         [%wait tom.dat]
       ==  ==
-    ?~  open
-      ?:  (~(has by meme) yes.dat)
-        [caz this]
-      =.  meme  (~(put by meme) yes.dat ~)
-      [caz this]
-    =.  meme
-      ?~  win.u.open
-        (~(put by meme) yes.dat `[wat.u.open how.u.open %.n])
-      (~(put by meme) yes.dat `[wat.u.open how.u.open u.win.u.open])
-    :_  this(open ~)
-    :~  :*
-      %pass  [%wrdu %daily %timer (scot %da tom.dat) ~]
-      %arvo  %b
-      [%wait tom.dat]
-    ==  ==
+    ::  commented out until full version
+    ::?~  open
+    ::  ?:  (~(has by meme) yes.dat)
+    ::    [caz this]
+    ::  =.  meme  (~(put by meme) yes.dat ~)
+    ::  [caz this]
+    ::=.  meme
+    ::  ?~  win.u.open
+    ::    (~(put by meme) yes.dat `[wat.u.open how.u.open %.n])
+    ::  (~(put by meme) yes.dat `[wat.u.open how.u.open u.win.u.open])
+    [caz this(open ~)]
   ==
   --
 ::
@@ -161,7 +157,8 @@
   ^-  (unit (unit cage))
   ?+    path  (on-peek:def path)
       [%x %dbug %state ~]
-    ``[%state !>([%0 meme=meme best=best rank=rank fren=fren])]
+    ``[%state !>([%0 cena='you can\'t see me'])]
+    ::``[%state !>([%0 meme=meme best=best rank=rank fren=fren])]
   ==
 ::
 ++  on-fail  on-fail:def
@@ -180,28 +177,21 @@
     =+  dat=(date now.bol)
     ~&  >>>  [%giving %up %already `@tas`'?' ~]
     =.  open  ~
-    =.  meme  (~(put by meme) tod.dat `[wat.ope how.ope %.n])
+    ::=.  meme  (~(put by meme) tod.dat `[wat.ope how.ope %.n])
     [(earth `[%sh ~]) state]
   ::
   ++  setup
-    |=  let=?(%four %five)
     =+  dat=(date now.bol)
     ~&  dat
-    ?:  (~(has by meme) tod.dat)
-      ~&  >>>  [%todays %game %complete]
-      ~&  >>>  [%wait %another `@dr`(sub tom.dat now.bol)]
-      :_  state
-      %-  earth 
-      `[%ma 'today\'s game is complete - wait til tomorrow'] 
-    =.  open  `[now.bol (~(rand dict bol) let) *bord ~]
-    ?-    let
-        %four
-      ~&  >  [%$ %$ %$ %$]
-     [(earth `[%st ~]) state]
-        %five
-      ~&  >  [%$ %$ %$ %$ %$]
-      [(earth `[%st ~]) state]
-    ==
+    ::?:  (~(has by meme) tod.dat)
+    ::  ~&  >>>  [%todays %game %complete]
+    ::  ~&  >>>  [%wait %another `@dr`(sub tom.dat now.bol)]
+    ::  :_  state
+    ::  %-  earth 
+    ::  `[%ma 'today\'s game is complete - wait til tomorrow'] 
+    =.  open  `[now.bol ~(rand dict bol) *bord ~]
+    ~&  >  [%$ %$ %$ %$]
+   [(earth `[%st ~]) state]
   ::
   ++  guess
     |=  $:  ope=[wen=@da wat=wrdl how=bord win=(unit ?)]
@@ -220,7 +210,7 @@
         (~(put by how.ope) +(brd) [(sub now.bol wen.ope) [pla ~[%x %x %x %x]]])
       ~&  >  [%chicken %dinner - ~[%x %x %x %x]]
       =.  open  ~
-      =.  meme  (~(put by meme) tod.dat `[wat.ope born %.y])
+      ::=.  meme  (~(put by meme) tod.dat `[wat.ope born %.y])
       [(earth `[%gu %wi]) state]
     |-
     ?:  |(?=(~ wor) ?=(~ plo))
@@ -229,7 +219,7 @@
       ?:  =(+(brd) 6)
         ~&  >>>  [%pound %sand - rit %on %turn %6]
         =.  open  ~
-        =.  meme  (~(put by meme) tod.dat `[wat.ope born %.n])
+        ::=.  meme  (~(put by meme) tod.dat `[wat.ope born %.n])
         [(earth `[%gu %lo]) state]
       ~&  >>  [pla rit]
       =.  open  `[wen.ope wat.ope born win.ope]
@@ -256,25 +246,25 @@
     =-  [%give %fact ~[/website] [%json !>(jon)]]~
     ^-  jon=json
     =<
-    =+  :*  m=(pairs (~(rep by meme) mon))
-            b=~
-            r=~
-            f=~
+    =+  :*  ::m=(pairs (~(rep by meme) mon))
+            ::b=~
+            ::r=~
+            ::f=~
             o=?~(open ~ (oon u.open))
         ==
     %-  pairs
     ?~  git
-      :~  ['meme' m]
-          ['best' b]
-          ['rank' r]
-          ['fren' f]
+      :~  ::['meme' m]
+          ::['best' b]
+          ::['rank' r]
+          ::['fren' f]
           ['open' o]
       ==
     ?-    -.u.git
         %gu
-      :~  ['meme' m]
-          ['best' b]
-          ['rank' r]
+      :~  ::['meme' m]
+          ::['best' b]
+          ::['rank' r]
           ['open' o]
         ::
           :-  'mesg'
@@ -288,8 +278,8 @@
         %bo
       ['bord' ~]~
         %sh
-      :~  ['meme' m]
-          ['rank' r]
+      :~  ::['meme' m]
+          ::['rank' r]
           ['open' o]
           ['mesg' [%s 'giving up already?']]
       ==
@@ -322,7 +312,7 @@
       |=  [rin=[scor=@ud =ship] out=json]
       [%s 'strange rank']
     ++  fon
-      |=  [fin=[=ship =^meme] out=json]
+      |=  [fin=[=ship =meme] out=json]
       [%s 'strange fren']
     ++  oon
       |=  oin=[wen=@da wat=wrdl how=bord win=(unit ?)]

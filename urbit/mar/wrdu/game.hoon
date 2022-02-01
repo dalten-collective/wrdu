@@ -14,6 +14,7 @@
   ::
   ++  json
     |=  jon=^json
+    ~&  jon
     %-  play
     =<  (wrd-noun jon)
     |%
@@ -21,7 +22,8 @@
       =,  dejs:format
       %-  of
       :~  [%guess (ot :~(['test' so]))]
-          [%start (ot :~(['leng' (se %tas)]))]
+          [%start ul]
+          [%shrug ul]
       ==
     --
   --
