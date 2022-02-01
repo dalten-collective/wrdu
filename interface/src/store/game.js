@@ -76,7 +76,20 @@ export default {
         const letts = v.test.split('')
         letts.forEach((l, i) => {
           // TODO: check if already seen
-          lettRiteMapping[l] = rites[i]
+          const score = rites[i]
+          const existing = lettRiteMapping[l]
+
+          // Upgrade previous scores
+          if (existing) {
+            if (existing === 'o' && score === 'n') {
+              lettRiteMapping[l] = score
+            }
+            if (existing === 'n' && score === 'x') {
+              lettRiteMapping[l] = score
+            }
+          } else {
+            lettRiteMapping[l] = score
+          }
         })
       }
       return lettRiteMapping
