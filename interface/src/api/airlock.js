@@ -11,3 +11,10 @@ export function openAirlock(onEvent, onClose) {
     onClose(sub)
   })
 }
+
+export function closeAirlock(subscription, onClose) {
+  urbitAPI
+    .unsubscribe(subscription).then(() => {
+      onClose
+    })
+}
