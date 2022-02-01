@@ -8,6 +8,7 @@
         <button @click="!mean ? '' : showHint = true" class="color" :class="mean ? '' : ['opacity-30', 'cursor-default']">
           <span class="text-2xl">&#128768;</span> <!-- hint -->
         </button>
+        <button @click="shrug">givup</button>
       </div>
       <div class="flex-1 text-center">
         <h1 class="text-3xl font-bold">
@@ -89,6 +90,10 @@ export default {
       }
       this.$store.dispatch('game/startGame')
       // or: import gameApi and call startGame directly
+    },
+
+    shrug() {
+      this.$store.dispatch('game/shrug')
     }
   }
 }

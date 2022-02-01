@@ -19,5 +19,15 @@ export default {
         'shrug': null 
       }
     });
+  },
+
+  shrug() {
+    urbitAPI.poke({
+      app: 'wrdu',
+      mark: 'wrdu-game',
+      json: {
+        'shrug': null 
+      }
+    });
   }
 }

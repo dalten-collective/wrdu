@@ -1,14 +1,14 @@
 <template>
-  <div class="max-w-full">
-    <div v-if="false" class="text-red-600">
-      DEBUG
-      <button class="p-2 border rounded-md" @click="closeAirlock">close airlock</button>
-      <button class="p-2 border rounded-md" @click="startGame">Start game</button>
-    </div>
+  <Mesg />
+
+  <div v-if="false" class="text-red-600">
+    DEBUG
+    <button class="p-2 border rounded-md" @click="closeAirlock">close airlock</button>
+  </div>
+  <div id="app-container">
 
     <Hed class="border-b hed-border" />
 
-    <Mesg />
 
     <div v-if="noGame" class="flex flex-col justify-center min-h-screen">
        <div class="flex justify-center">
