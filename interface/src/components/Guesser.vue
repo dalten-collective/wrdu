@@ -1,6 +1,7 @@
 <template>
   <div>
-    <input class="text-black" type="text" v-model="guess" />
+    <!-- adjust focus based on index and backspace -->
+    <input v-for="space in spaces" class="mr-2" :key="space" style="width: 32px; height: 32px;" type="text" maxlength="1" />
     <button @click="sendGuess">
       Guess
     </button>
@@ -14,7 +15,7 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      guess: '',
+      guess: [],
     }
   },
 
