@@ -19,21 +19,16 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  props: {
-    guess: {
-      default: []
-    }
-  },
   computed: {
     ...mapGetters('game', [
-      'spaces',
+      'spaces', 'gues'
     ]),
   },
 
   methods: {
     letterAtGuessIndex(i) {
-      if (this.guess.length > 0) {
-        return this.guess[i]
+      if (this.gues.length > 0) {
+        return this.gues[i]
       } else {
         return null
       }

@@ -39,6 +39,14 @@ export default {
 
   mounted() {
     window.addEventListener('keyup', this.keyHandler)
+    // set up from store:
+    this.internalGues = this.gues
+  },
+  watch: {
+    // Keep internal updated from store
+    gues(val) {
+      this.internalGues = val
+    }
   },
   unmounted() {
     window.removeEventListener('keyup', this.keyHandler)
@@ -46,7 +54,7 @@ export default {
 
   computed: {
     ...mapGetters('game', [
-    'granRite', 'spaces'
+    'granRite', 'spaces', 'gues', 'guesString'
     ]),
     currentSpace() {
       return 0
@@ -55,7 +63,7 @@ export default {
 
   data() {
     return {
-      currentGues: [],
+      internalGues: [],
       rows: [
       [
         'q',
@@ -111,31 +119,33 @@ export default {
 
 
     sendWork() {
-      this.$emit('updateSpaces', this.currentGues)
+      this.$store.dispatch('game/setGues', this.internalGues)
     },
 
     sendGues() {
-      if (this.currentGues.length !== this.spaces) {
+      if (this.internalGues.length !== this.spaces) {
         return
       }
-      this.$emit('sendGues')
+      this.$store.dispatch('game/sendGuess', this.guesString).then(() => {
+        this.clear()
+      })
     },
 
     appendLetter(letter) {
-      if (this.currentGues.length === this.spaces) {
+      if (this.internalGues.length === this.spaces) {
         return
       }
-      this.currentGues.push(letter)
+      this.internalGues.push(letter)
       this.sendWork()
     },
 
     popLetter() {
-      this.currentGues.pop()
+      this.internalGues.pop()
       this.sendWork()
     },
 
     clear() {
-      this.currentGues = []
+      this.internalGues = []
       this.sendWork()
     },
 

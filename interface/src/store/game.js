@@ -14,6 +14,7 @@ export default {
       mesgTimer: null,
       win: null,
       emos: '',
+      gues: [],
       // wat has been moved to getters onley
     }
   },
@@ -43,11 +44,20 @@ export default {
     setEmos(state, payload) {
       state.emos = payload
     },
+    setGues(state, payload) {
+      state.gues = payload
+    },
   },
 
   getters: {
     alow(state) {
       return state.alow
+    },
+    gues(state) {
+      return state.gues
+    },
+    guesString(state) {
+      return state.gues.join('')
     },
     wat(state, getters) {
       if (getters?.open?.wat) {
@@ -182,6 +192,10 @@ export default {
 
     shrug() {
       gameApi.shrug()
+    },
+
+    setGues({ commit }, gues) {
+      commit('setGues', gues)
     },
 
     sendGuess({commit}, gues) {
