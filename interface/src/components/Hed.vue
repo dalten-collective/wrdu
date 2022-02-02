@@ -112,7 +112,6 @@ export default {
         return
       }
       this.$store.dispatch('game/startGame')
-      // or: import gameApi and call startGame directly
     },
 
     shrug() {

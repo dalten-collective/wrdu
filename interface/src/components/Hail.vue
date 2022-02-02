@@ -1,5 +1,4 @@
 <template>
-
   <div class="flex flex-col justify-center min-h-screen">
      <div class="flex justify-center">
       <NewGameButton />

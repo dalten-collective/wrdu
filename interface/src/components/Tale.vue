@@ -1,6 +1,5 @@
 <template>
-
-  <div class="p-8 bg-red-300 md:px-44 modal-wrap">
+  <div class="z-50 p-8 bg-red-300 md:px-44 modal-wrap">
     <!-- <div> -->
     <div class="shadow-lg rounded-md">
       <div v-if="win" class="flex flex-col items-center justify-around h-full">
@@ -23,9 +22,21 @@
           </div>
         </div>
       </div>
-      <div v-else>
-        You didn't win the last game.
-        <NewGameButton />
+      <div v-else class="flex flex-col items-center justify-around h-full">
+        <div class="flex flex-col flex-grow">
+          <div>
+            <div class="mb-10">
+              <h2 class="text-2xl text-center">
+                You lost
+              </h2>
+            </div>
+          </div>
+        <div class="flex flex-col flex-grow">
+          <div>
+            <NewGameButton />
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>

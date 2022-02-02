@@ -69,6 +69,14 @@ body {
   /*}*/
 /*}*/
 
+.btn {
+  @apply px-4;
+  @apply py-2;
+  @apply font-bold;
+  @apply cursor-pointer;
+  @apply rounded-md;
+  @apply shadow-md;
+}
 
 .modal-wrap {
   @apply fixed;
@@ -77,13 +85,11 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.btn {
+.alert-wrap {
+  @apply fixed;
+  @apply w-full;
   @apply px-4;
-  @apply py-2;
-  @apply font-bold;
-  @apply cursor-pointer;
-  @apply rounded-md;
-  @apply shadow-md;
+  @apply top-4;
 }
 
 .modal-wrap>div {
