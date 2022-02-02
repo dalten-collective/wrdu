@@ -1,5 +1,20 @@
 <template>
   <Mesg />
+  <!-- <Wrap /> -->
+  <div v-if="endState">
+    ended
+    <div v-if="win">
+      you won {{ emos }}
+      <div><!-- emoji displayer -->
+      </div>
+    </div>
+    <div v-else>
+      you lost.
+    </div>
+  </div>
+    <div v-else>
+      still goin
+  </div>
 
   <div v-if="false" class="text-red-600">
     DEBUG
@@ -42,7 +57,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('game', ['word']),
+    ...mapGetters('game', ['word', 'endState', 'emos', 'win']),
     noGame() {
       return !this.word
     }

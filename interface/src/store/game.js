@@ -5,19 +5,16 @@ export default {
   namespaced: true,
   state () {
     return {
-      alow: 6, // TODO: 10
+      alow: 6,
       meme: {},
-      wat: {
-        word: '',
-        long: 0,
-        mean: '',
-      },
-      how: {
-      },
+      open: null,
+      how: {},
       wen: 0,
       mesg: '',
       mesgTimer: null,
       win: null,
+      emos: '',
+      // wat has been moved to getters onley
     }
   },
 
@@ -40,29 +37,45 @@ export default {
     setWin(state, payload) {
       state.win = payload
     },
+    setOpen(state, payload) {
+      state.open = payload
+    },
+    setEmos(state, payload) {
+      state.emos = payload
+    },
   },
 
   getters: {
     alow(state) {
       return state.alow
     },
-    done(_, getters) {
-      if (!getters.word) {
-        return true
+    wat(state, getters) {
+      if (getters?.open?.wat) {
+        return getters.open.wat
+      } else {
+        return {
+          wat: {
+            word: '',
+            long: 0,
+            mean: '',
+          },
+        }
       }
-      return false
     },
-    spaces(state) {
-      return state.wat.long
+    open(state) {
+      return state.open
     },
-    word(state) {
-      return state.wat.word
+    spaces(state, getters) {
+      return getters.wat.long
     },
-    mean(state) {
-      return state.wat.mean
+    word(state, getters) {
+      return getters.wat.word
     },
-    how(state) {
-      return state.how
+    mean(state, getters) {
+      return getters.wat.mean
+    },
+    how(state, getters) {
+      return getters.open.how
     },
     mesg(state) {
       return state.mesg
@@ -95,6 +108,21 @@ export default {
       }
       return lettRiteMapping
     },
+    win(state) {
+      return state.win
+    },
+    endState(state, getters) {
+      if (state.open === null) {
+        return true
+      }
+      if (getters.win === null) {
+        return false
+      }
+      return true
+    },
+    emos(state) {
+      return state.emos
+    },
   },
 
   actions: {
@@ -109,6 +137,12 @@ export default {
       }, 3000)
     },
 
+    setEmos({ commit }, payload) {
+      if (payload.emos) {
+        commit('setEmos', payload.emos)
+      }
+    },
+
     setWin({ commit }, payload) {
       commit('setWin', payload)
     },
@@ -119,20 +153,18 @@ export default {
     },
     setOpen({ commit }, payload) {
       if (!payload.open) {
+        commit('setOpen', payload.open)
         return
       }
       const open = payload.open
-      if (open.wat) {
-        commit('setWat', open.wat)
-      }
-      if (open.how) {
-        commit('setHow', open.how)
-      }
-      if (open.wen) {
-        commit('setWen', open.wen)
-      }
-      if (open.win) {
-        commit('setWin', open.win) // TODO: yea?
+
+      commit('setOpen', open)
+      commit('setWen', open.wen)
+
+      if (open.win === null) {
+        commit('setWin', null)
+      } else {
+        commit('setWin', open.win)
       }
     },
 

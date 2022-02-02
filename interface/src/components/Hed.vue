@@ -18,7 +18,7 @@
         <div class="flex">
           <!-- scores -->
         </div>
-        <button v-if="done" @click="startGame" class="flex color">
+        <button v-if="endState" @click="startGame" class="flex color">
           <span class="text-2xl">
           &#128880;
           </span>
@@ -90,7 +90,7 @@ export default {
   ],
   computed: {
     ...mapGetters('game', [
-      'how', 'spaces', 'done', 'mean'
+      'how', 'spaces', 'endState', 'mean', 'win'
     ]),
   },
 
@@ -105,7 +105,7 @@ export default {
 
   methods: {
     startGame() {
-      if (!this.done) {
+      if (!this.endState) {
         return
       }
       this.$store.dispatch('game/startGame')
