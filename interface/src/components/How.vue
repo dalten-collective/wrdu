@@ -1,7 +1,8 @@
 <template>
-  <div v-for="(a, i) in alow - 1" :key="i">
+  <div v-for="(a, i) in alow" :key="i">
 
-    <Rite v-if="riteAtIndex(a)" :rite="riteAtIndex(a).rite" :test="riteAtIndex(a).test" />
+    <Work v-if="i == guesCount" />
+    <Rite v-else-if="riteAtIndex(a)" :rite="riteAtIndex(a).rite" :test="riteAtIndex(a).test" />
 
   </div>
 </template>
@@ -10,12 +11,16 @@
 
 import { mapGetters } from 'vuex'
 import Rite from './Rite.vue'
+import Work from './Work.vue'
 
 export default {
   computed: {
     ...mapGetters('game', [
       'how', 'alow', 'spaces'
     ]),
+    guesCount() {
+      return Object.keys(this.how).length
+    },
   },
   methods: {
     riteAtIndex(i) {
@@ -26,7 +31,8 @@ export default {
     }
   },
   components: {
-    Rite
+    Rite,
+    Work
   },
 }
 </script>

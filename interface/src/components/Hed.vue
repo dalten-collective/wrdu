@@ -18,9 +18,15 @@
         <div class="flex">
           <!-- scores -->
         </div>
-        <button @click="startGame" class="flex color">
-          <span class="text-2xl" :class="done ? '' : ['opacity-30', 'cursor-default']">
+        <button v-if="endState" @click="startGame" class="flex color">
+          <span class="text-2xl">
           &#128880;
+          </span>
+        </button>
+        <button v-else @click="showShrug = true" class="flex color">
+          <span class="text-2xl">
+          &#128819;
+          <!-- ¯\_(ツ)_/¯ -->
           </span>
         </button>
         <!-- crown: &#128818; -->
@@ -39,7 +45,7 @@
           <p class="font-bold text-center"><span class="mr-2 cursor-pointer green-text" @click="reallyShowHint = true">Yes</span> <span class="cursor-pointer" @click="showHint = false">No</span></p>
         </div>
         <div v-else>
-          <p class="color-dark">{{ mean }}</p>
+          <p v-html="redactedMean" class="color-dark"></p>
         </div>
       </div>
     </div>
@@ -58,6 +64,20 @@
       </div>
     </div>
 
+    <div v-if="showShrug" class="absolute w-1/2 h-1/2 top-1/4 left-1/4">
+      <div class="flex flex-col p-2 pb-6 rounded-sm shadow-lg bg-light color">
+        <div class="text-right">
+          <button @click="showShrug = false">
+            &#128881;
+          </button>
+        </div>
+        <div>
+          <p class="color-dark">Are you sure you want to give up?</p>
+          <p class="font-bold text-center"><span class="mr-2 cursor-pointer green-text" @click="shrug">Yes</span> <span class="cursor-pointer" @click="showShrug = false">No</span></p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -70,8 +90,11 @@ export default {
   ],
   computed: {
     ...mapGetters('game', [
-      'how', 'spaces', 'done', 'mean'
+      'how', 'spaces', 'endState', 'mean', 'win'
     ]),
+    redactedMean() {
+      return this.mean.replace(/%wrdu/g, '<span class="green-text">%wrdu</span>')
+    },
   },
 
   data() {
@@ -79,17 +102,24 @@ export default {
       showHint: false,
       reallyShowHint: false,
       showHelp: false,
+      showShrug: false,
     }
   },
 
   methods: {
     startGame() {
-      if (!this.done) {
+      if (!this.endState) {
         return
       }
       this.$store.dispatch('game/startGame')
-      // or: import gameApi and call startGame directly
+    },
+
+    shrug() {
+      this.$store.dispatch('game/shrug')
     }
   }
 }
 </script>
+
+<style scoped>
+</style>

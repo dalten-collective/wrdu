@@ -5,18 +5,17 @@ export default {
   namespaced: true,
   state () {
     return {
-      alow: 6, // TODO: 10
+      alow: 6,
       meme: {},
-      wat: {
-        word: '',
-        long: 0,
-        mean: '',
-      },
-      how: {
-      },
+      open: null,
+      how: {},
       wen: 0,
       mesg: '',
+      mesgTimer: null,
       win: null,
+      emos: '',
+      gues: [],
+      // wat has been moved to getters onley
     }
   },
 
@@ -39,29 +38,54 @@ export default {
     setWin(state, payload) {
       state.win = payload
     },
+    setOpen(state, payload) {
+      state.open = payload
+    },
+    setEmos(state, payload) {
+      state.emos = payload
+    },
+    setGues(state, payload) {
+      state.gues = payload
+    },
   },
 
   getters: {
     alow(state) {
       return state.alow
     },
-    done(_, getters) {
-      if (!getters.word) {
-        return true
+    gues(state) {
+      return state.gues
+    },
+    guesString(state) {
+      return state.gues.join('')
+    },
+    wat(state, getters) {
+      if (getters?.open?.wat) {
+        return getters.open.wat
+      } else {
+        return {
+          wat: {
+            word: '',
+            long: 0,
+            mean: '',
+          },
+        }
       }
-      return false
     },
-    spaces(state) {
-      return state.wat.long
+    open(state) {
+      return state.open
     },
-    word(state) {
-      return state.wat.word
+    spaces(state, getters) {
+      return getters.wat.long
     },
-    mean(state) {
-      return state.wat.mean
+    word(state, getters) {
+      return getters.wat.word
     },
-    how(state) {
-      return state.how
+    mean(state, getters) {
+      return getters.wat.mean
+    },
+    how(state, getters) {
+      return getters.open.how
     },
     mesg(state) {
       return state.mesg
@@ -76,10 +100,46 @@ export default {
         const letts = v.test.split('')
         letts.forEach((l, i) => {
           // TODO: check if already seen
-          lettRiteMapping[l] = rites[i]
+          const score = rites[i]
+          const existing = lettRiteMapping[l]
+
+          // Upgrade previous scores
+          if (existing) {
+            if (existing === 'o' && score === 'n') {
+              lettRiteMapping[l] = score
+            }
+            if (existing === 'n' && score === 'x') {
+              lettRiteMapping[l] = score
+            }
+          } else {
+            lettRiteMapping[l] = score
+          }
         })
       }
       return lettRiteMapping
+    },
+    win(state) {
+      //return true // TODO
+      return state.win
+    },
+    newReady(state, getters) {
+      if (state.open === null && getters.win === null) {
+        return true
+      }
+      return false
+    },
+    endState(state, getters) {
+      if (state.open === null) {
+        return true
+      }
+      if (getters.win === null) {
+        return false
+      }
+      return true
+    },
+    emos(state) {
+      //return "⬛⬛⬛⬛\r\n🟩🟩🟨🟨\r\n🟨🟩🟨🟨\r\n🟩🟩🟩🟩\r\n"
+      return state.emos
     },
   },
 
@@ -88,9 +148,19 @@ export default {
       commit('setMesg', '')
     },
 
-    setMesg({ commit }, payload) {
+    setMesg({ commit, dispatch }, payload) {
       commit('setMesg', payload)
+      setTimeout(() => {
+        dispatch('clearMesg')
+      }, 3000)
     },
+
+    setEmos({ commit }, payload) {
+      if (payload.emos) {
+        commit('setEmos', payload.emos)
+      }
+    },
+
     setWin({ commit }, payload) {
       commit('setWin', payload)
     },
@@ -101,25 +171,31 @@ export default {
     },
     setOpen({ commit }, payload) {
       if (!payload.open) {
+        commit('setOpen', payload.open)
         return
       }
       const open = payload.open
-      if (open.wat) {
-        commit('setWat', open.wat)
-      }
-      if (open.how) {
-        commit('setHow', open.how)
-      }
-      if (open.wen) {
-        commit('setWen', open.wen)
-      }
-      if (open.win) {
-        commit('setWin', open.win) // TODO: yea?
+
+      commit('setOpen', open)
+      commit('setWen', open.wen)
+
+      if (open.win === null) {
+        commit('setWin', null)
+      } else {
+        commit('setWin', open.win)
       }
     },
 
     startGame() {
       gameApi.startGame()
+    },
+
+    shrug() {
+      gameApi.shrug()
+    },
+
+    setGues({ commit }, gues) {
+      commit('setGues', gues)
     },
 
     sendGuess({commit}, gues) {

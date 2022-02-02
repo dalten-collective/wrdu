@@ -1,12 +1,11 @@
 <template>
   <div>
     <div class="m-auto" style="max-width: 17rem;" >
-      <div style="display: grid; grid-gap: 5px; padding: 10px;" :style="`grid-template-rows: repear(${ alow }, 1fr);`">
+      <div style="display: grid; grid-gap: 5px; padding: 10px;" :style="`grid-template-rows: repeat(${ alow }, 1fr);`">
         <How />
-        <Work :guess="guess" />
       </div>
     </div>
-    <GuessBoard @updateSpaces="updateSpaces" @sendGues="sendGues" ref="bord" />
+    <GuessBoard />
   </div>
 </template>
 
@@ -15,7 +14,6 @@
 import { mapGetters } from 'vuex'
 import GuessBoard from './GuessBoard.vue'
 import How from './How.vue'
-import Work from './Work.vue'
 
 export default {
   data() {
@@ -29,9 +27,6 @@ export default {
     ...mapGetters('game', [
       'spaces', 'word', 'mean', 'alow'
     ]),
-    spacesToGues() {
-      return this.guess.join('')
-    },
   },
 
   methods: {
@@ -52,7 +47,6 @@ export default {
   components: {
     GuessBoard,
     How,
-    Work
   },
 }
 </script>

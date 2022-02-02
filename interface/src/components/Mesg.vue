@@ -1,7 +1,7 @@
 <template>
-  <div v-if="mesg" class="absolute top-0 mt-6 h-1/2">
-    <div class="flex justify-between py-2 text-center shadow-lg alert rounded-md">
-      <div class="pl-2">
+  <div v-if="mesg" class="fixed absolute w-full px-4 z-100 top-4 alert-wrap">
+    <div @click="clearMesg" class="flex justify-between py-2 text-center shadow-lg alert rounded-md">
+      <div class="flex-grow pl-2 text-center">
         {{ mesg }}
       </div>
       <button @click="clearMesg" class="pr-2">

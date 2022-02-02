@@ -1,5 +1,9 @@
 <template>
   <div class="flex-col justify-center">
+    <div class="my-2 text-center">
+      <input type="text" v-model="nativeKeys" id="nativeKeyInput" class="min-w-full px-2 text-center text-green-300 rounded-md bg-less-dark" placeholder="Tap here to use native keyboard" />
+    </div>
+
     <div v-for="(row, i) in rows" :key="row[0]" style="margin: 0 auto 8px;" class="flex justify-center w-100">
       <div v-if="i == 1" style="flex: 0.5;">
       </div>
@@ -37,9 +41,24 @@ export default {
     'rite', 'test'
   ],
 
+  mounted() {
+    window.addEventListener('keyup', this.keyHandler)
+    // set up from store:
+    this.internalGues = this.gues
+  },
+  watch: {
+    // Keep internal updated from store
+    gues(val) {
+      this.internalGues = val
+    }
+  },
+  unmounted() {
+    window.removeEventListener('keyup', this.keyHandler)
+  },
+
   computed: {
     ...mapGetters('game', [
-    'granRite', 'spaces'
+    'granRite', 'spaces', 'gues', 'guesString'
     ]),
     currentSpace() {
       return 0
@@ -48,7 +67,8 @@ export default {
 
   data() {
     return {
-      currentGues: [],
+      internalGues: [],
+      nativeKeys: '',
       rows: [
       [
         'q',
@@ -87,32 +107,51 @@ export default {
   },
 
   methods: {
+    keyHandler(e) {
+      if (this.rows.flat().includes(e.key)) {  // Any letter in our rows
+        this.appendLetter(e.key)
+      }
+      if (e.keyCode === 13) { // 'Enter'
+        this.sendGues()
+      }
+      if (e.keyCode === 8) {  // 'Backspace'
+        this.popLetter()
+      }
+      if (e.keyCode === 191) {  // '?'
+        this.popLetter()
+      }
+    },
+
+
     sendWork() {
-      this.$emit('updateSpaces', this.currentGues)
+      this.$store.dispatch('game/setGues', this.internalGues)
     },
 
     sendGues() {
-      if (this.currentGues.length !== this.spaces) {
+      if (this.internalGues.length !== this.spaces) {
         return
       }
-      this.$emit('sendGues')
+      this.$store.dispatch('game/sendGuess', this.guesString).then(() => {
+        this.clear()
+      })
     },
 
     appendLetter(letter) {
-      if (this.currentGues.length === this.spaces) {
+      if (this.internalGues.length === this.spaces) {
         return
       }
-      this.currentGues.push(letter)
+      this.internalGues.push(letter)
       this.sendWork()
     },
 
     popLetter() {
-      this.currentGues.pop()
+      this.internalGues.pop()
       this.sendWork()
     },
 
     clear() {
-      this.currentGues = []
+      this.internalGues = []
+      this.nativeKeys = ''
       this.sendWork()
     },
 
@@ -132,3 +171,12 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+  #nativeKeyInput::placeholder {
+    color: var(--color-tone-4);
+  }
+  #nativeKeyInput {
+    color: var(--color-tone-4);
+  }
+</style>
