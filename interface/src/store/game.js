@@ -109,6 +109,7 @@ export default {
       return lettRiteMapping
     },
     win(state) {
+      return true // TODO
       return state.win
     },
     endState(state, getters) {
@@ -121,6 +122,7 @@ export default {
       return true
     },
     emos(state) {
+      return "⬛⬛⬛⬛\r\n🟩🟩🟨🟨\r\n🟨🟩🟨🟨\r\n🟩🟩🟩🟩\r\n"
       return state.emos
     },
   },

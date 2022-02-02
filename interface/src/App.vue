@@ -4,9 +4,7 @@
   <div v-if="endState">
     ended
     <div v-if="win">
-      you won {{ emos }}
-      <div><!-- emoji displayer -->
-      </div>
+      <Emos />
     </div>
     <div v-else>
       you lost.
@@ -43,6 +41,7 @@
 <script>
 
 //import Board from './components/Board.vue'
+import Emos from './components/Emos.vue'
 import Hed from './components/Hed.vue'
 import Guesser from './components/Guesser.vue'
 import Mesg from './components/Mesg.vue'
@@ -87,6 +86,7 @@ export default {
 
   components: {
     //Board,
+    Emos,
     Hed,
     Guesser,
     Mesg
