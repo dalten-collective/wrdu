@@ -1,5 +1,9 @@
 <template>
   <div class="flex-col justify-center">
+    <div class="my-2 text-center">
+      <input type="text" v-model="nativeKeys" id="nativeKeyInput" class="min-w-full px-2 text-center text-green-300 rounded-md bg-less-dark" placeholder="Tap here to use native keyboard" />
+    </div>
+
     <div v-for="(row, i) in rows" :key="row[0]" style="margin: 0 auto 8px;" class="flex justify-center w-100">
       <div v-if="i == 1" style="flex: 0.5;">
       </div>
@@ -64,6 +68,7 @@ export default {
   data() {
     return {
       internalGues: [],
+      nativeKeys: '',
       rows: [
       [
         'q',
@@ -146,6 +151,7 @@ export default {
 
     clear() {
       this.internalGues = []
+      this.nativeKeys = ''
       this.sendWork()
     },
 
@@ -165,3 +171,12 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+  #nativeKeyInput::placeholder {
+    color: var(--color-tone-4);
+  }
+  #nativeKeyInput {
+    color: var(--color-tone-4);
+  }
+</style>
