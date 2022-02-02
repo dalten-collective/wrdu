@@ -37,6 +37,13 @@ export default {
     'rite', 'test'
   ],
 
+  mounted() {
+    window.addEventListener('keyup', this.keyHandler)
+  },
+  unmounted() {
+    window.removeEventListener('keyup', this.keyHandler)
+  },
+
   computed: {
     ...mapGetters('game', [
     'granRite', 'spaces'
@@ -87,6 +94,22 @@ export default {
   },
 
   methods: {
+    keyHandler(e) {
+      if (this.rows.flat().includes(e.key)) {  // Any letter in our rows
+        this.appendLetter(e.key)
+      }
+      if (e.keyCode === 13) { // 'Enter'
+        this.sendGues()
+      }
+      if (e.keyCode === 8) {  // 'Backspace'
+        this.popLetter()
+      }
+      if (e.keyCode === 191) {  // '?'
+        this.popLetter()
+      }
+    },
+
+
     sendWork() {
       this.$emit('updateSpaces', this.currentGues)
     },
