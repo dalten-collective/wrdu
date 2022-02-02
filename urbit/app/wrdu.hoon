@@ -41,7 +41,6 @@
         (watch:pals:wr %targets)
         ~(call behn:wr now.bowl)
     ==
-  ~&  state
   [car this]
 ::
 ++  on-save
@@ -68,8 +67,6 @@
 ::
 ++  on-agent
   |=  [=wire =sign:agent:gall]
-  ~&  >  wire
-  ~&  >  sign
   `this
 ::
 ++  on-poke
@@ -83,21 +80,13 @@
       ?-    -.vaz
           %guess
         ?~  open
-          ~&  >>>
-            :*  %game  %not  %started  -
-                [%start %four]  %or  [%start %five]
-                %to  %start  ~
-            ==
+          ~&  >>>  [%game %not %started [%start ~] %to %start]
           `state
         (guess:game:wr u.open test.vaz)
       ::
           %board
         ?~  open
-          ~&  >>>
-            :*  %game  %not  %started  -
-                [%start %four]  %or  [%start %five]
-                %to  %start  ~
-            ==
+          ~&  >>>  [%game %not %started [%start ~] %to %start]
           `state
         (~(rep by how.u.open) board:game:wr)
       ::
@@ -110,7 +99,7 @@
           %start
         ?~  open
           setup:game:wr
-        ~&  >>>  [%game %in %play - [%shrug ~] %to %quit ~]
+        ~&  >>>  [%game %in %play [%shrug ~] %to %quit ~]
         `state
       ==
     ==
@@ -176,13 +165,11 @@
     |=  ope=[wen=@da wat=wrdl how=bord win=(unit ?)]
     =+  dat=(date now.bol)
     ~&  >>>  [%giving %up %already `@tas`'?' ~]
-    =.  open  ~
     ::=.  meme  (~(put by meme) tod.dat `[wat.ope how.ope %.n])
-    [(earth `[%sh ~]) state]
+    [(earth `[%sh ~]) state(open ~)]
   ::
   ++  setup
     =+  dat=(date now.bol)
-    ~&  dat
     ::?:  (~(has by meme) tod.dat)
     ::  ~&  >>>  [%todays %game %complete]
     ::  ~&  >>>  [%wait %another `@dr`(sub tom.dat now.bol)]
@@ -200,28 +187,29 @@
     =+  brd=~(wyt by how.ope)
     =+  dat=(date now.bol)
     ?.  =((lent (trip pla)) long.wat.ope)
-      ~&  >>>
-        [%you %must %submit long.wat.ope %characters ~]
+      ~&  >>>  [%you %must %submit long.wat.ope %characters ~]
       [(earth `[%ma 'invalid submission length']) state]
     =+  [wor=(flop (cass (trip word.wat.ope))) plo=(flop (cass (trip pla)))]
     =|  rit=rite
     ?:  =(wor plo)
       =/  born=bord
         (~(put by how.ope) +(brd) [(sub now.bol wen.ope) [pla ~[%x %x %x %x]]])
-      ~&  >  [%chicken %dinner - ~[%x %x %x %x]]
-      =.  open  ~
+      =.  open  `[wen.ope wat.ope born [~ %.y]]
+      ~&  >  [%chicken %dinner ~[%x %x %x %x]]
       ::=.  meme  (~(put by meme) tod.dat `[wat.ope born %.y])
-      [(earth `[%gu %wi]) state]
+      [(earth `[%gu %wi]) state(open ~)]
+    ?.  (~(alow dict bol) word.wat.ope)
+      [(earth `[%gu %ba]) state]
     |-
     ?:  |(?=(~ wor) ?=(~ plo))
       =/  born=bord
         (~(put by how.ope) +(brd) [(sub now.bol wen.ope) [pla rit]])
       ?:  =(+(brd) 6)
-        ~&  >>>  [%pound %sand - rit %on %turn %6]
-        =.  open  ~
+        =.  open  `[wen.ope wat.ope born [~ %.n]]
+        ~&  >>>  [%pound %sand %mate]
+        ~&  >>>  born
         ::=.  meme  (~(put by meme) tod.dat `[wat.ope born %.n])
-        [(earth `[%gu %lo]) state]
-      ~&  >>  [pla rit]
+        [(earth `[%gu %lo]) state(open ~)]
       =.  open  `[wen.ope wat.ope born win.ope]
       [(earth `[%gu %gu]) state]
      %=    $
@@ -234,7 +222,7 @@
         rit
       ?:  =(i.wor i.plo)
         [%x rit]
-      ?:  (~(has in (sy wor)) i.plo)
+      ?:  (~(has in (sy (cass (trip word.wat.ope)))) i.plo)
         [%n rit]
       [%o rit]
     ==
@@ -267,12 +255,17 @@
           ::['rank' r]
           ['open' o]
         ::
+          :-  'emos'
+          :-  %s
+          ?:(?=(%gu act.u.git) '' ?~(open '' (emo how.u.open)))
+        ::
           :-  'mesg'
           :-  %s
           ?-  act.u.git
-            %wi  'winner - that\'s all for today, champ'
-            %lo  'close, but no cigar. wait until tomorrow to try again.'
+            %wi  'winner - these games aren\'t tracked yet - so feel free to keep playing'
+            %lo  'close, but no cigar. there\'s no penalty for poor performance... yet.'
             %gu  ''
+            %ba  'word not recognized - please try again - DM ~rabsef-bicrym if it\'s egregious'
           ==
       ==
         %bo
@@ -291,6 +284,26 @@
       ['mesg' [%s msg.u.git]]~
     ==
     |%
+    ++  emo
+      |=  inn=bord
+      |^
+      =+  [cou=7 out=*cord]
+      |-
+      ?:  =(cou 0)
+        out
+      ?.  (~(has by inn) cou)
+        $(cou (dec cou))
+      =+  mak=(flop rite.gues.val:(~(got by inn) cou))
+      $(cou (dec cou), out (rap 3 [(roll mak ome) '\0d\0a' out ~]))
+      ++  ome
+        |=  [inn=?(%x %o %n) out=cord]
+        ?-  inn
+          %x  (cat 3 '🟩' out)
+          %n  (cat 3 '🟨' out)
+          %o  (cat 3 '⬛' out)
+        ==
+      --
+    ::
     ++  mon
       |=  $:  inn=[wen=@da how=(unit [=wrdl =bord win=?])]
               out=(list [@t json])

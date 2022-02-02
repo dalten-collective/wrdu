@@ -26,7 +26,7 @@
               [%start ~]
           ==
 ::
-+$  erth  $%  [%gu act=?(%wi %lo %gu)]
++$  erth  $%  [%gu act=?(%wi %lo %gu %ba)]
               [%bo ~]
               [%sh ~]
               [%st ~]
