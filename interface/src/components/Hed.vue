@@ -45,7 +45,7 @@
           <p class="font-bold text-center"><span class="mr-2 cursor-pointer green-text" @click="reallyShowHint = true">Yes</span> <span class="cursor-pointer" @click="showHint = false">No</span></p>
         </div>
         <div v-else>
-          <p class="color-dark">{{ mean }}</p>
+          <p v-html="redactedMean" class="color-dark"></p>
         </div>
       </div>
     </div>
@@ -92,6 +92,9 @@ export default {
     ...mapGetters('game', [
       'how', 'spaces', 'endState', 'mean', 'win'
     ]),
+    redactedMean() {
+      return this.mean.replace(/%wrdu/g, '<span class="green-text">%wrdu</span>')
+    },
   },
 
   data() {
@@ -118,3 +121,6 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+</style>

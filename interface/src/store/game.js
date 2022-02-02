@@ -109,8 +109,14 @@ export default {
       return lettRiteMapping
     },
     win(state) {
-      return true // TODO
+      //return true // TODO
       return state.win
+    },
+    newReady(state, getters) {
+      if (state.open === null && getters.win === null) {
+        return true
+      }
+      return false
     },
     endState(state, getters) {
       if (state.open === null) {
@@ -122,7 +128,7 @@ export default {
       return true
     },
     emos(state) {
-      return "⬛⬛⬛⬛\r\n🟩🟩🟨🟨\r\n🟨🟩🟨🟨\r\n🟩🟩🟩🟩\r\n"
+      //return "⬛⬛⬛⬛\r\n🟩🟩🟨🟨\r\n🟨🟩🟨🟨\r\n🟩🟩🟩🟩\r\n"
       return state.emos
     },
   },

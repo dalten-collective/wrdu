@@ -51,6 +51,47 @@ body {
   padding-bottom: 1rem;
 }
 
+/*@media screen(sm) {*/
+  /*.modal-wrap {*/
+    /*@apply fixed;*/
+    /*@apply h-screen;*/
+    /*@apply w-screen;*/
+  /*}*/
+/*}*/
+
+/*@media screen(md) {*/
+  /*.modal-wrap {*/
+    /*@apply fixed;*/
+    /*@apply h-screen;*/
+    /*@apply w-screen;*/
+
+    /*@apply p-8;*/
+  /*}*/
+/*}*/
+
+
+.modal-wrap {
+  @apply fixed;
+  @apply w-screen;
+  @apply h-screen;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.btn {
+  @apply px-4;
+  @apply py-2;
+  @apply font-bold;
+  @apply cursor-pointer;
+  @apply rounded-md;
+  @apply shadow-md;
+}
+
+.modal-wrap>div {
+  background-color: var(--color-tone-5);
+  @apply p-2;
+  @apply h-full;
+}
+
 .rong  {
   background-color: var(--absent);
   border-color: var(--absent);
@@ -111,6 +152,7 @@ body {
 .alert {
   color: #212121;
   background-color: #85c0f9;
+  background-color: var(--yellow);
 }
 
 .bg-dark {
