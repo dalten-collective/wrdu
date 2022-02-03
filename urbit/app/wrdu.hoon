@@ -36,12 +36,13 @@
 ++  on-init
   ^-  (quip card _this)
   ~&  >  [%wrdu %open ~]
-  =/  car=(list card)
-    :~  (watch:pals:wr %leeches)
-        (watch:pals:wr %targets)
-        ~(call behn:wr now.bowl)
-    ==
-  [car this]
+  `this
+  ::=/  car=(list card)
+  ::  :~  (watch:pals:wr %leeches)
+  ::      (watch:pals:wr %targets)
+  ::      ~(call behn:wr now.bowl)
+  ::  ==
+  ::[car this]
 ::
 ++  on-save
   ^-  vase
@@ -56,12 +57,12 @@
     =|  car=(list card)
     =/  wax=(map [path ship term] [? path])
       (malt ~(tap in wex.bowl))
-    =?    car
-        !(~(has by wax) [/pals/targets/wrdu our.bowl %pals])
-      [(watch:pals:wr %targets) car]
-    =?    car
-        !(~(has by wax) [/pals/leeches/wrdu our.bowl %pals])
-      [(watch:pals:wr %leeches) car]
+    ::=?    car
+    ::    !(~(has by wax) [/pals/targets/wrdu our.bowl %pals])
+    ::  [(watch:pals:wr %targets) car]
+    ::=?    car
+    ::    !(~(has by wax) [/pals/leeches/wrdu our.bowl %pals])
+    ::  [(watch:pals:wr %leeches) car]
     [car this(state old)]
   ==
 ::
@@ -80,26 +81,22 @@
       ?-    -.vaz
           %guess
         ?~  open
-          ~&  >>>  [%game %not %started [%start ~] %to %start]
           `state
         (guess:game:wr u.open test.vaz)
       ::
           %board
         ?~  open
-          ~&  >>>  [%game %not %started [%start ~] %to %start]
           `state
         (~(rep by how.u.open) board:game:wr)
       ::
           %shrug
         ?~  open
-          ~&  >>>  [%no %game %in %play ~]
           `state
         (shrug:game:wr u.open)
       ::
           %start
         ?~  open
           setup:game:wr
-        ~&  >>>  [%game %in %play [%shrug ~] %to %quit ~]
         `state
       ==
     ==
@@ -158,13 +155,11 @@
   |%
   ++  board
     |=  [inn=[@ud =rate] out=(quip card _state)]
-    ~&  >  [-.inn time.rate.inn gues.rate.inn]
     [(earth `[%bo ~]) state]
   ::
   ++  shrug
     |=  ope=[wen=@da wat=wrdl how=bord win=(unit ?)]
     =+  dat=(date now.bol)
-    ~&  >>>  [%giving %up %already `@tas`'?' ~]
     ::=.  meme  (~(put by meme) tod.dat `[wat.ope how.ope %.n])
     [(earth `[%sh ~]) state(open ~)]
   ::
@@ -177,7 +172,6 @@
     ::  %-  earth 
     ::  `[%ma 'today\'s game is complete - wait til tomorrow'] 
     =.  open  `[now.bol ~(rand dict bol) *bord ~]
-    ~&  >  [%$ %$ %$ %$]
    [(earth `[%st ~]) state]
   ::
   ++  guess
@@ -187,7 +181,6 @@
     =+  brd=~(wyt by how.ope)
     =+  dat=(date now.bol)
     ?.  =((lent (trip pla)) long.wat.ope)
-      ~&  >>>  [%you %must %submit long.wat.ope %characters ~]
       [(earth `[%ma 'invalid submission length']) state]
     =+  [wor=(flop (cass (trip word.wat.ope))) plo=(flop (cass (trip pla)))]
     =|  rit=rite
@@ -195,10 +188,9 @@
       =/  born=bord
         (~(put by how.ope) +(brd) [(sub now.bol wen.ope) [pla ~[%x %x %x %x]]])
       =.  open  `[wen.ope wat.ope born [~ %.y]]
-      ~&  >  [%chicken %dinner ~[%x %x %x %x]]
       ::=.  meme  (~(put by meme) tod.dat `[wat.ope born %.y])
       [(earth `[%gu %wi]) state(open ~)]
-    ?.  (~(alow dict bol) word.wat.ope)
+    ?.  (~(alow dict bol) pla)
       [(earth `[%gu %ba]) state]
     |-
     ?:  |(?=(~ wor) ?=(~ plo))
@@ -206,8 +198,6 @@
         (~(put by how.ope) +(brd) [(sub now.bol wen.ope) [pla rit]])
       ?:  =(+(brd) 6)
         =.  open  `[wen.ope wat.ope born [~ %.n]]
-        ~&  >>>  [%pound %sand %mate]
-        ~&  >>>  born
         ::=.  meme  (~(put by meme) tod.dat `[wat.ope born %.n])
         [(earth `[%gu %lo]) state(open ~)]
       =.  open  `[wen.ope wat.ope born win.ope]

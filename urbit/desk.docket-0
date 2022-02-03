@@ -1,7 +1,7 @@
 :~  title+'wrdu'
     info+'word game by ~dalten for our mothers'
     color+0x6a.aa64
-    site+/apps/wrdu
+    glob-http+['https://freedom-club.sfo2.digitaloceanspaces.com/glob-0v5.178ai.km4bl.vnj6q.lkm0u.memnl.glob' 0v5.178ai.km4bl.vnj6q.lkm0u.memnl]
     base+'wrdu'
     version+[0 0 1]
     website+'https://dalten.org/'
